@@ -1,0 +1,57 @@
+<!doctype html><html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="light"><title>晶片研發 AI 使用體驗調查</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="wrap">
+<header class="hero"><div class="eyebrow">CHIP DESIGN · AI WORKFLOW</div><h1>晶片研發 AI 使用體驗調查</h1><p>你在 RTL、驗證、EDA、韌體或 SoC 工作中，最想用 AI 解決什麼問題？我們想找出可行替代方式，以及值得部門一起爭取的資源。</p><div class="meta"><span>約 8 至 12 分鐘</span><span>不詢問姓名與個人 Token 用量</span><span>v4 · 模型與服務通路分開填答</span></div></header>
+<div id="offline" class="notice warn hide">目前是離線預覽模式：可以操作問卷，啟動內網伺服器後才能提交及集中儲存。</div>
+<div class="layout"><main class="paper">
+<div class="stepbar"><div id="progress" style="width:25%"></div></div><div id="stepnote" class="stepnote">第 1 / 4 部分 · 你的工作與 AI 使用方式</div>
+<form id="survey" novalidate>
+<section id="part1">
+<h2>你的工作與 AI 使用方式</h2><p class="hint">沒有標準答案。尚未使用 Agent 也完全沒關係。</p>
+<div class="question"><div class="q"><span class="qnum">01</span>你主要從事哪一類工作？（選一項最接近的）</div><div id="tasks" class="gridopts"></div></div>
+<div class="question"><div class="q"><span class="qnum">02</span>目前你通常如何使用 AI？（單選）</div><div id="modes" class="gridopts onecol"></div></div>
+<div class="question"><div class="q"><span class="qnum">03</span>目前 AI 實際協助你做哪些事？（可複選）</div><div id="aijobs" class="gridopts"></div></div>
+<div class="question"><div class="q"><span class="qnum">04</span>這段工作中，你目前負責哪些部分？（可複選）</div><div id="humanjobs" class="gridopts"></div></div>
+</section>
+<section id="partTools" class="hide">
+<h2>你實際用哪些工具與模型？</h2><p class="hint">直接勾選名稱。我們只分析部門使用型態，不會查個人帳單，也不要求提供 API Key。</p>
+<div class="question"><div class="q"><span class="qnum">05</span>最近一個月你用過哪些 AI 工具／入口？（可複選）</div><div id="tools" class="gridopts"></div></div>
+<div class="question"><div class="q"><span class="qnum">06</span>其中使用最頻繁的是哪個工具／入口？（點擊展開選項）</div><div id="primaryTool" class="picker-holder"></div></div>
+<div class="question"><div class="q"><span class="qnum">07</span>你實際使用過哪些模型？（可複選）</div><p class="hint">請依工具 UI 或已知設定勾選；不知道可以直接選「不確定／自動分配」，不需要猜測。</p><div id="models" class="gridopts"></div></div>
+<div class="question"><div class="q"><span class="qnum">08</span>主要工作最常使用哪個模型？</div><div id="primaryModel" class="picker-holder"></div></div>
+<div class="question education"><h3>模型、服務平台與費用，要分開看</h3>
+<p>工具是你操作的入口；模型是實際處理任務的系統；服務通路決定模型在哪裡執行、由誰提供算力與如何計費。同一個 Qwen 或 DeepSeek 模型，可以由外部平台代管，也可以由公司自行部署。</p>
+<div class="gridopts onecol">
+<div class="tip"><b>商業閉源模型服務</b><br>例如透過供應商使用 GPT、Claude 等系列。可能採訂閱、Token 用量或企業合約計費；訂閱額度與 API 帳單不一定共用。</div>
+<div class="tip"><b>開放權重模型的商業代管</b><br>例如經 Databricks、OpenRouter 或其他供應商使用開放權重模型。取得模型權重與執行推論是兩回事；平台提供 GPU 與服務通常有費用，也可能提供有限的免費方案。這些平台也可能提供閉源或外部模型，不能只看平台名稱就判斷模型類型。</div>
+<div class="tip"><b>公司 On-prem 模型</b><br>由公司自行部署，常使用開放權重模型，但不能因此斷定全部都是開源。即使個人沒有扣款，公司仍負擔硬體、電力、維運及可能的授權費；也可能排隊或有容量限制。</div></div>
+<p class="hint">「開放權重」不等於符合所有開源條件；可否商用依模型版本與授權條款。內部 Chatbot 也可能轉送外部服務，資料能否使用仍依公司核准政策。比較時看整個任務的成功率、重試次數、總耗時與成本，無需在此提供金額。</p>
+<p class="hint">平台說明：<a href="https://docs.databricks.com/aws/en/machine-learning/foundation-model-apis/" target="_blank" rel="noopener noreferrer">Databricks Foundation Model APIs</a> · <a href="https://openrouter.ai/pricing" target="_blank" rel="noopener noreferrer">OpenRouter 計費說明</a>（2026-10-15 查閱；實際依公司合約）</p></div>
+<div class="question"><div class="q">08a 最近使用模型時，經過哪些服務通路？（可複選）</div><p class="hint">不知道就選不知道；不要由 AIDO、Chatbot 或模型名稱推測部署位置。</p><div id="routes" class="gridopts onecol"></div></div>
+<div class="question"><div class="q">08b 你在第 08 題所選的最常用模型，主要透過哪個通路使用？</div><p class="hint">只問這個主要組合，不會把你勾選的每個模型與每個通路自動配對。模型或通路不詳仍可據實填答。</p><div id="primaryRoute" class="picker-holder"></div></div>
+<div class="question"><div class="q">08c 你對目前模型服務的成本了解多少？（單選）</div><div id="costAwareness" class="gridopts onecol"></div></div>
+<div class="question"><div class="q"><span class="qnum">09</span>你通常怎麼決定使用哪個模型？（選一項最接近的）</div><div id="chooseBasis" class="gridopts"></div></div>
+<div class="question"><div class="q"><span class="qnum">10</span>有嘗試把不同工作交給不同等級模型嗎？</div><div id="routingPractice" class="gridopts onecol"></div></div>
+<div class="question"><div class="q"><span class="qnum">11</span>哪個模型最容易消耗你的 Token 額度？</div><p class="hint">選擇你感受到的主要來源即可，無需查帳單或填寫金額；不清楚請選「不知道」。</p><div id="costlyModel" class="picker-holder"></div></div>
+<div class="question"><div class="q"><span class="qnum">12</span>Token 最常消耗在哪一類晶片設計工作？</div><div id="costlyTask" class="gridopts"></div></div>
+</section>
+<section id="part2" class="hide">
+<h2>目前最常卡住的是什麼？</h2><p class="hint">先選出障礙，再看可能的解法。每個選項都附上晶片研發的具體情境。</p>
+<div class="question"><div class="q"><span class="qnum">13</span>哪些問題讓 AI 無法進一步幫助你？（最多選 3 項）</div><div id="barriers" class="gridopts"></div><p class="hint" id="selectedCount">已選 0 / 3</p></div>
+<div class="question"><div class="q"><span class="qnum">14</span>如果先處理一件事，你最希望解決哪一項？</div><div id="top" class="picker-holder"></div></div>
+<div class="question"><div class="q"><span class="qnum">15</span>可以舉一個正在被卡住的工作嗎？（選填）</div><textarea class="inp textarea" maxlength="300" id="example" placeholder="例如：分析某個 IP 的 RTL 與 register 規格時，Agent 每次都重讀大量文件，額度先耗盡，無法產生可驗證的結果。請避免填寫專案名稱、機密設計內容或憑證。"></textarea></div>
+</section>
+<section id="part3" class="hide">
+<h2>一起找出下一條可行路徑</h2><p class="hint">以下不是測驗，也不是要求你自行解決所有問題。只是幫助我們區分哪些方法還值得嘗試，哪些障礙應由部門或 IT 統一處理。</p>
+<div id="diagnostic"></div>
+<div class="question"><div class="q">如果 VS Code 外掛或特定 AI 入口無法使用，你目前怎麼處理？</div><p class="hint">可依實際經驗回答。這題特別用來分辨「入口被擋」和「服務真的不能用」。</p><div id="alternateRoute" class="gridopts onecol"></div></div>
+<div class="question"><div class="q"><span class="qnum">16</span>哪幾種支援最可能幫助你？（最多選 3 項）</div><div id="helpwanted" class="gridopts"></div></div>
+<div class="question"><div class="q"><span class="qnum">17</span>你願意分享實際案例嗎？</div><div id="volunteer" class="gridopts onecol"></div></div>
+<div class="question"><div class="q"><span class="qnum">18</span>還有什麼想讓部門一起改善的？（選填）</div><textarea class="inp textarea" maxlength="300" id="extra" placeholder="例如：目前能使用哪一個經核准的 EDA 日誌整理工具不清楚；或是 CLI 可用但跨系統資料權限不明。請勿填機密資訊。"></textarea></div>
+<div class="notice">資料只用於部門共同改善分析。這份問卷只收工具和模型名稱類別，不要求姓名、員工編號、精確額度或專案機密；若填入自由文字，請自行確認不含可識別資訊。提交後會送往本問卷的伺服器集中儲存。</div>
+</section>
+<div class="actions"><button type="button" class="btn alt" id="prev" hidden>上一部分</button><span id="err" class="error" aria-live="polite"></span><button type="button" class="btn" id="next">下一部分</button><button type="submit" class="btn hide" id="submit">送出匿名回覆</button></div>
+</form><section id="success" class="hide"><h2 class="ok">回覆已送出，謝謝你</h2><p>你分享的內容將協助我們找出晶片研發的共通瓶頸，並提出模型選擇、工作流程、工具與資源方面的改善方向。</p><button class="btn alt" id="again">填寫另一份</button></section>
+</main>
+<aside class="aside"><div class="paper"><strong>這份調查想做什麼？</strong><p>例如，你使用 Claude Code 的 VS Code 外掛，但外掛安裝受限。我們想知道：你試過已核准的 Claude Code Terminal、Codex CLI，或桌面入口嗎？如果不能，具體缺的是哪項能力？</p><p>又例如，你用 GPT 高階模型或 Claude Sonnet 處理所有 RTL、Lint log 和規格摘要。我們想確認是否可把固定格式任務交給較低成本的 GPT 輕量、Claude Haiku、DeepSeek 或核准的內部模型，保留高階模型處理關鍵判斷。</p><p>如果方法已經試過仍失敗，就把它整理成部門共同向 IT 提需求的證據。</p><hr class="divider"><p class="small">後端會彙整工具選擇、模型選擇、首要瓶頸與替代方案嘗試情況，供部門辨識共同問題。</p><p class="small">不蒐集個人 Token 額度，也不進行個人使用能力排名。</p></div></aside></div>
+<footer class="footer">晶片研發 AI 工作流調查 · 部門試行版。需要集中收件時，請使用公司核准的內網環境及部署方式。</footer></div>
+<script src="app.js"></script></body></html>
